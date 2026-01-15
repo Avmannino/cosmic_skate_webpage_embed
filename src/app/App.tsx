@@ -7,7 +7,6 @@ import allAgesIcon from "../assets/agesicon.png";
 import heroImage1 from "../assets/hero/hero-1.jpg";
 import heroImage2 from "../assets/hero/hero-2.jpg";
 import heroImage3 from "../assets/hero/hero-3.jpg";
-import heroImage4 from "../assets/hero/hero-4.jpg";
 import galleryImage1 from "../assets/gallery/gallery-1.jpg";
 import galleryImage2 from "../assets/gallery/gallery-2.jpg";
 import galleryImage3 from "../assets/gallery/gallery-3.jpg";
@@ -31,14 +30,12 @@ export default function App() {
     { url: heroImage3, alt: "Wings Arena seating area" },
     { url: heroImage1, alt: "Wings Arena ice rink facility" },
     { url: heroImage2, alt: "Wings Arena ice rink view" },
-    { url: heroImage4, alt: "Ice skates rental" },
   ];
 
   const galleryImages = [
     { url: heroImage3, alt: "Wings Arena seating area" },
     { url: heroImage1, alt: "Wings Arena ice rink facility" },
     { url: heroImage2, alt: "Wings Arena ice rink view" },
-    { url: heroImage4, alt: "Ice skates rental" },
     { url: galleryImage1, alt: "Family ice skating" },
     { url: galleryImage2, alt: "Children skating rink" },
     { url: galleryImage3, alt: "Ice hockey arena" },
@@ -134,16 +131,16 @@ export default function App() {
   const SHADOW = "shadow-[0_8px_20px_rgba(0,0,0,0.45)]";
 
   return (
-    <div className="min-h-screen bg-[#0f1340] flex flex-col sm:block">
+    <div className="min-h-screen bg-[#392a7f] flex flex-col sm:block">
       {/* Header */}
-      <header className="bg-[#0f1340] border-b border-[#b2dbd7]/70">
+      <header className="bg-[#392a7f] border-b border-[#b2dbd7]/70">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 xl:px-8 py-4">
           <nav className="flex items-center justify-between"></nav>
         </div>
       </header>
 
       {/* Hero Section */}
-      <section className="bg-[#0f1340] border-b border-[#b2dbd7]/70">
+      <section className="bg-[#392a7f] border-b border-[#b2dbd7]/70">
         <div className="max-w-7xl mx-auto px-4 sm:px-5 xl:px-0 py-12">
           <div className="grid lg:grid-cols-2 gap-y-8 lg:gap-y-8 lg:gap-x-[162px] items-center">
             <div className="lg:-ml-[60px] min-[1001px]:max-[1325px]:ml-0 min-[1001px]:max-[1325px]:pr-5">
@@ -156,7 +153,7 @@ export default function App() {
                   className={`w-[100.04px] mt-[-50px] -mb-[15px] ml-3 mr-3 lg:ml-[10px] min-[1001px]:max-[1325px]:ml-[28px]`}
                 />
                 <h1 className="text-4xl lg:text-5xl text-white text-center lg:text-left min-[1001px]:max-[1325px]:pl-[28px]">
-                  Public Skate
+                  Cosmic Skate
                 </h1>
                 <div className="mt-[15px] -mb-[10px] h-px w-full bg-gradient-to-r from-transparent via-[#b2dbd7]/50 to-transparent" />
               </div>
@@ -164,15 +161,17 @@ export default function App() {
               {/* ✅ Nudge the paragraph + buttons to the right ONLY for 1001–1325 */}
               <div className="text-gray-300 mb-4 ml-1 space-y-5 lg:text-center min-[1001px]:max-[1325px]:ml-[28px] text-[15px] sm:text-[16px] lg:text-[18px] leading-relaxed">
                 <p>
-                  Lace up and hit the ice at our Public Skate—the perfect chance
-                  to get out on the ice. Whether you're practicing your skills,
-                  staying active, or just skating for fun, we welcome all ages
-                  and skill levels!
+                  Lights low, music up, and colorful effects that turn the rink
+                  into a full-on party on ice. Pull up with friends, take a few
+                  laps, hang out between songs, and settle into the vibe for the
+                  whole session - Cosmic Skate is built for an easy,
+                  high-energy night out that feels unique each time you skate.
+                  Bring your crew and make it your new go-to weekend night out!
                 </p>
                 <p>
-                  No skates? No problem—we've got a wide range of rental sizes
-                  from youth to adult, with both hockey and figure skates
-                  available.
+                  Rental Skates are INCLUDED during Cosmic Skates. We have a
+                  wide variety of sizes available for all ages in both hockey
+                  and figure skates.
                 </p>
               </div>
 
@@ -279,7 +278,7 @@ export default function App() {
         {/* Schedule Section */}
         <section
           id="schedule"
-          className="bg-[#0f1340] py-12 max-[1000px]:order-1"
+          className="bg-[#392a7f] py-12 max-[1000px]:order-1"
         >
           <div className="max-w-7xl mx-auto px-4 sm:px-6 xl:px-8">
             <div className="flex flex-col gap-6 sm:gap-8 min-[1001px]:items-center">
@@ -295,7 +294,7 @@ export default function App() {
                 ].join(" ")}
               >
                 <h2 className="text-[1.50125rem] sm:text-4xl mb-7 mt-7 min-[1001px]:mb-11 text-white text-center">
-                  Upcoming Public Skates
+                  Upcoming Cosmic Skates
                 </h2>
                 <div className="mb-[20px] -mt-[12px] h-px w-full bg-gradient-to-r from-transparent via-[#b2dbd7]/50 to-transparent" />
 
@@ -364,24 +363,20 @@ export default function App() {
         <h2 className="text-[2rem] sm:text-[2.15625rem] mb-1 text-white text-center"></h2>
 
         {/* ✅ wrapper applies shadow to PriceCard components */}
-        <div
-          className={
-            "grid grid-cols-1 sm:grid-cols-2 max-w-[856px] mx-auto gap-8 sm:gap-12 lg:gap-[72px]"
-          }
-        >
+        <div className="grid grid-cols-1 sm:grid-cols-2 max-w-[856px] mx-auto gap-8 sm:gap-12 lg:gap-[72px]">
           <div className={`[&>*]:${SHADOW}`}>
             <PriceCard
-              title="Admission"
-              price="$14"
+              title="Admission | 13yrs & Older"
+              price="$20"
               description="Per person"
-              features={["Walk-ins welcome", "Session length varies by date"]}
+              features={["Walk-ins welcome", "Rental Skates Included!"]}
             />
           </div>
 
           <div className={`[&>*]:${SHADOW}`}>
             <PriceCard
-              title="Skate Rental"
-              price="$6"
+              title="Admission | 12yrs & Under"
+              price="$15"
               description="Per person"
               features={[
                 "Hockey & Figure Skates",
@@ -394,7 +389,7 @@ export default function App() {
       </section>
 
       {/* Parties & Ice Bookings Section */}
-      <section className="bg-[#0f1340] py-8 pb-4 sm:pb-12 -mt-[25px]">
+      <section className="bg-[#392a7f] py-8 pb-4 sm:pb-12 -mt-[25px]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 xl:px-8">
           <h2 className="text-[1.5625rem] sm:text-[2.2625rem] mb-0 sm:mb-5 text-white text-center">
             Parties & Ice Bookings
@@ -470,7 +465,7 @@ export default function App() {
 
       {/* FAQ Section */}
       {/* ✅ Guaranteed move up 50px: use translate instead of relying on margins */}
-      <section className="bg-[#0f1340] py-12 sm:py-12 pt-0 sm:pt-12 order-1 sm:order-none mt-[35px] sm:mt-0 -translate-y-[15px]">
+      <section className="bg-[#392a7f] py-12 sm:py-12 pt-0 sm:pt-12 order-1 sm:order-none mt-[35px] sm:mt-0 -translate-y-[15px]">
         <div className="max-w-[58.08rem] mx-auto px-4 sm:px-6 xl:px-8">
           <h2 className="text-2xl sm:text-3xl mb-4 sm:mb-6 text-white text-center">
             Frequently Asked Questions
