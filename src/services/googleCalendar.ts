@@ -1,9 +1,15 @@
 // src/services/googleCalendar.ts
 
 const CALENDAR_ID = import.meta.env.VITE_GOOGLE_CALENDAR_ID as string | undefined;
-const API_KEY = import.meta.env.VITE_GOOGLE_CALENDAR_API_KEY as string | undefined;
+
+// ✅ Support BOTH env var names (yours + the older one)
+const API_KEY =
+  (import.meta.env.VITE_GOOGLE_API_KEY as string | undefined) ||
+  (import.meta.env.VITE_GOOGLE_CALENDAR_API_KEY as string | undefined);
 
 const TZ = "America/New_York";
+
+export type CalendarFilter = "all" | "publicSkate" | "cosmicSkate";
 
 export interface CalendarEvent {
   day: string;
@@ -46,8 +52,8 @@ function formatTime(dateString: string): string {
 function formatDate(dateString: string): string {
   const date = new Date(dateString);
   return date.toLocaleDateString("en-US", {
-    month: "numeric",
-    day: "numeric",
+    month: "short",
+    day: "2-digit",
     year: "numeric",
     timeZone: TZ,
   });
@@ -56,27 +62,49 @@ function formatDate(dateString: string): string {
 function getDayOfWeek(dateString: string): string {
   const date = new Date(dateString);
   return date.toLocaleDateString("en-US", {
-    weekday: "long",
+    weekday: "short",
     timeZone: TZ,
   });
 }
 
-export async function fetchCalendarEvents(): Promise<CalendarEvent[]> {
-  // If not configured, populate nothing
+function matchesPublicSkate(summary?: string) {
+  const t = (summary ?? "").toLowerCase();
+  return t.includes("public") && t.includes("skate");
+}
+
+function matchesCosmicSkate(summary?: string) {
+  const t = (summary ?? "").toLowerCase();
+  return t.includes("cosmic") && t.includes("skate");
+}
+
+function passesFilter(item: GoogleCalendarItem, filter: CalendarFilter) {
+  if (filter === "all") return true;
+
+  const s = item.summary ?? "";
+
+  if (filter === "publicSkate") return matchesPublicSkate(s);
+  if (filter === "cosmicSkate") return matchesCosmicSkate(s);
+
+  return true;
+}
+
+export async function fetchCalendarEvents(
+  filter: CalendarFilter = "all"
+): Promise<CalendarEvent[]> {
   if (!CALENDAR_ID || !API_KEY) {
     console.error(
-      "[Calendar] Missing env vars. Set VITE_GOOGLE_CALENDAR_ID and VITE_GOOGLE_CALENDAR_API_KEY."
+      "[Calendar] Missing env vars. Set VITE_GOOGLE_CALENDAR_ID and VITE_GOOGLE_API_KEY."
     );
     return [];
   }
 
   try {
     const now = new Date();
-    const weekFromNow = new Date(now);
-    weekFromNow.setDate(now.getDate() + 7);
+    const rangeEnd = new Date(now);
+    rangeEnd.setDate(now.getDate() + 60);
 
     const timeMin = now.toISOString();
-    const timeMax = weekFromNow.toISOString();
+    const timeMax = rangeEnd.toISOString();
 
     const params = new URLSearchParams({
       key: API_KEY,
@@ -84,7 +112,7 @@ export async function fetchCalendarEvents(): Promise<CalendarEvent[]> {
       timeMax,
       singleEvents: "true",
       orderBy: "startTime",
-      maxResults: "50",
+      maxResults: "250",
       timeZone: TZ,
       fields: "items(status,summary,start(dateTime,date),end(dateTime,date))",
     });
@@ -119,8 +147,9 @@ export async function fetchCalendarEvents(): Promise<CalendarEvent[]> {
     const items = Array.isArray(data.items) ? data.items : [];
     if (items.length === 0) return [];
 
-    const events: CalendarEvent[] = items
+    return items
       .filter((item) => item.status !== "cancelled")
+      .filter((item) => passesFilter(item, filter))
       .map((item) => {
         const allDay = isAllDay(item);
 
@@ -140,8 +169,6 @@ export async function fetchCalendarEvents(): Promise<CalendarEvent[]> {
         } as CalendarEvent;
       })
       .filter(Boolean) as CalendarEvent[];
-
-    return events;
   } catch (error) {
     console.error("[Calendar] Error fetching calendar events:", error);
     return [];

@@ -23,7 +23,8 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/app/components/ui/accordion";
-import { Snowflake, Cross } from "lucide-react";
+import { Volume2, Stars, Star } from "lucide-react";
+
 
 export default function App() {
   const heroImages = [
@@ -223,6 +224,31 @@ export default function App() {
           <div className="max-[640px]:w-[100vw] max-[640px]:ml-[calc(50%-50vw)] max-[640px]:px-3 max-[640px]:box-border">
             {/* ✅ wrapper applies shadow to each InfoBox card without needing to edit InfoBox component */}
             <div className="grid w-full grid-cols-2 lg:grid-cols-4 gap-x-[20px] gap-y-[calc(1rem*1.0356)] justify-items-stretch">
+
+              <div className={`w-full [&>*]:!w-full [&>*]:${SHADOW}`}>
+                <InfoBox
+                  icon={Volume2}
+                  title="Skate to the Beat"
+                  description="Big hits, good vibes, and nonstop skating."
+                  titleClassName="text-[16px] sm:text-[16px]"
+                  descriptionClassName="text-[11px] sm:text-[13px] leading-tight"
+                  iconOffset="-mt-[0px]"
+                  textOffset="-mt-[3.5px]"
+                />
+              </div>
+
+              <div className={`w-full [&>*]:!w-full [&>*]:${SHADOW}`}>
+                <InfoBox
+                  icon={Stars}
+                  title="Light Up Your Night"
+                  description="Neon Ice. All night."
+                  titleClassName="text-[16px] sm:text-[16px]"
+                  descriptionClassName="text-[11px] sm:text-[13px] leading-tight"
+                  iconOffset="-mt-[6px]"
+                  textOffset="-mt-[3.5px]"
+                />
+              </div>
+
               <div className={`w-full [&>*]:!w-full [&>*]:${SHADOW}`}>
                 <InfoBox
                   iconImage={familyIcon}
@@ -245,30 +271,6 @@ export default function App() {
                   textOffset="-mt-[1.5px]"
                   titleClassName="text-[15px] sm:text-[16px]"
                   descriptionClassName="text-[11px] sm:text-[13px] leading-snug"
-                />
-              </div>
-
-              <div className={`w-full [&>*]:!w-full [&>*]:${SHADOW}`}>
-                <InfoBox
-                  icon={Snowflake}
-                  title="Quality Ice"
-                  description="Professionally maintained ice surface"
-                  titleClassName="text-[16px] sm:text-[16px]"
-                  descriptionClassName="text-[11px] sm:text-[13px] leading-tight"
-                  iconOffset="-mt-[0px]"
-                  textOffset="-mt-[3.5px]"
-                />
-              </div>
-
-              <div className={`w-full [&>*]:!w-full [&>*]:${SHADOW}`}>
-                <InfoBox
-                  icon={Cross}
-                  title="Safety First"
-                  description="Trained staff and safety equipment available"
-                  titleClassName="text-[16px] sm:text-[16px]"
-                  descriptionClassName="text-[11px] sm:text-[13px] leading-tight"
-                  iconOffset="-mt-[6px]"
-                  textOffset="-mt-[3.5px]"
                 />
               </div>
             </div>

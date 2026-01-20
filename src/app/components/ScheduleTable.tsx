@@ -1,4 +1,5 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
+import { fetchCalendarEvents, type CalendarEvent } from "@/services/googleCalendar";
 
 interface ScheduleItem {
   day: string;
@@ -7,97 +8,10 @@ interface ScheduleItem {
   end: string;
 }
 
-type GoogleCalEvent = {
-  id?: string;
-  start?: { dateTime?: string; date?: string };
-  end?: { dateTime?: string; date?: string };
-};
-
-function getEnv(name: "VITE_GOOGLE_CALENDAR_ID" | "VITE_GOOGLE_API_KEY") {
-  const v = import.meta.env[name] as string | undefined;
-  return v && v.trim().length ? v.trim() : undefined;
-}
-
-function toDate(d: { dateTime?: string; date?: string } | undefined) {
-  if (!d) return null;
-  // timed event
-  if (d.dateTime) return new Date(d.dateTime);
-  // all-day event -> treat as local midnight
-  if (d.date) return new Date(`${d.date}T00:00:00`);
-  return null;
-}
-
-function formatDay(dt: Date) {
-  return new Intl.DateTimeFormat(undefined, { weekday: "short" }).format(dt);
-}
-
-function formatDate(dt: Date) {
-  return new Intl.DateTimeFormat(undefined, {
-    month: "short",
-    day: "numeric",
-    year: "numeric",
-  }).format(dt);
-}
-
-function formatTime(dt: Date) {
-  return new Intl.DateTimeFormat(undefined, {
-    hour: "numeric",
-    minute: "2-digit",
-  }).format(dt);
-}
-
-async function fetchCalendarScheduleItems(
-  calendarId: string,
-  apiKey: string
-): Promise<ScheduleItem[]> {
-  const timeMin = new Date().toISOString();
-
-  const url =
-    `https://www.googleapis.com/calendar/v3/calendars/` +
-    `${encodeURIComponent(calendarId)}` +
-    `/events?` +
-    new URLSearchParams({
-      key: apiKey,
-      timeMin,
-      singleEvents: "true",
-      orderBy: "startTime",
-      maxResults: "50",
-    }).toString();
-
-  const res = await fetch(url);
-  if (!res.ok) {
-    const body = await res.text().catch(() => "");
-    throw new Error(`Google Calendar API error (${res.status}): ${body}`);
-  }
-
-  const data = (await res.json()) as { items?: GoogleCalEvent[] };
-  const items = data.items ?? [];
-
-  const mapped: ScheduleItem[] = items
-    .map((ev) => {
-      const startDt = toDate(ev.start);
-      const endDt = toDate(ev.end);
-      if (!startDt || !endDt) return null;
-
-      return {
-        day: formatDay(startDt),
-        date: formatDate(startDt),
-        start: formatTime(startDt),
-        end: formatTime(endDt),
-      };
-    })
-    .filter((x): x is ScheduleItem => Boolean(x));
-
-  return mapped;
-}
-
 export function ScheduleTable() {
   const [scheduleData, setScheduleData] = useState<ScheduleItem[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-
-  const calendarId = useMemo(() => getEnv("VITE_GOOGLE_CALENDAR_ID"), []);
-  const apiKey = useMemo(() => getEnv("VITE_GOOGLE_API_KEY"), []);
 
   useEffect(() => {
     let cancelled = false;
@@ -106,16 +20,18 @@ export function ScheduleTable() {
       try {
         setLoading(true);
 
-        if (!calendarId || !apiKey) {
-          throw new Error(
-            "Missing VITE_GOOGLE_CALENDAR_ID or VITE_GOOGLE_API_KEY in .env"
-          );
-        }
+        // ✅ Cosmic-only
+        const events: CalendarEvent[] = await fetchCalendarEvents("cosmicSkate");
 
-        const events = await fetchCalendarScheduleItems(calendarId, apiKey);
+        const mapped: ScheduleItem[] = events.map((ev) => ({
+          day: ev.day,
+          date: ev.date,
+          start: ev.start,
+          end: ev.end,
+        }));
 
         if (!cancelled) {
-          setScheduleData(events);
+          setScheduleData(mapped);
           setError(null);
         }
       } catch (err) {
@@ -123,9 +39,7 @@ export function ScheduleTable() {
 
         if (!cancelled) {
           setScheduleData([]);
-          setError(
-            "Schedule couldn’t load. Check your .env values (Calendar ID + API Key), make sure the Calendar API is enabled, then restart the dev server."
-          );
+          setError("Failed to load schedule.");
         }
       } finally {
         if (!cancelled) setLoading(false);
@@ -137,7 +51,7 @@ export function ScheduleTable() {
     return () => {
       cancelled = true;
     };
-  }, [calendarId, apiKey]);
+  }, []);
 
   if (loading) {
     return (
@@ -149,21 +63,11 @@ export function ScheduleTable() {
 
   return (
     <div>
-      {error && (
-        <div className="mb-4 rounded-md border border-red-500/40 bg-red-500/10 px-4 py-3 text-sm text-red-100">
+      {error ? (
+        <div className="mb-4 rounded-md border border-red-500/30 bg-red-500/10 px-4 py-3 text-sm text-red-200">
           {error}
-          {!calendarId || !apiKey ? (
-            <div className="mt-2 opacity-90">
-              Expected in <code className="font-mono">.env</code>:
-              <div className="mt-1 font-mono text-xs">
-                VITE_GOOGLE_CALENDAR_ID=...
-                <br />
-                VITE_GOOGLE_API_KEY=...
-              </div>
-            </div>
-          ) : null}
         </div>
-      )}
+      ) : null}
 
       <div className="overflow-x-auto">
         <table className="w-full border-collapse">
