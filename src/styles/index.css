@@ -6,7 +6,8 @@
 
 .spotlight-stage {
   position: relative;
-  overflow: hidden;
+  overflow-x: hidden;   /* prevents sideways beam overflow */
+  overflow-y: visible;  /* never interferes with vertical scroll */
 }
 
 /* Overlay that draws beams */
