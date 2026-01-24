@@ -25,6 +25,10 @@ export function InfoBox({
   titleClassName = "",
   descriptionClassName = "",
 }: InfoBoxProps) {
+  // ✅ One place to control the "make PNG icon look #b7ff62" filter
+  const GREEN_FILTER =
+    "brightness(0) saturate(100%) invert(89%) sepia(31%) saturate(682%) hue-rotate(25deg) brightness(106%) contrast(107%)";
+
   return (
     <div className="bg-gray-800 border border-gray-700 rounded-lg p-4 sm:p-6 flex flex-col items-center text-center hover:scale-[1.03] transition-transform duration-150 w-[65%] sm:w-full mx-auto sm:mx-0">
       {iconImage ? (
@@ -32,22 +36,16 @@ export function InfoBox({
           src={iconImage}
           alt=""
           className={`${iconSize} mb-3 ${iconOffset}`}
-          style={{
-            filter:
-              "brightness(0) saturate(100%) invert(84%) sepia(13%) saturate(659%) hue-rotate(122deg) brightness(95%) contrast(86%)",
-          }}
+          style={{ filter: GREEN_FILTER }}
         />
       ) : Icon ? (
-        <Icon className={`${iconSize} text-[#b2dbd7] mb-3`} />
+        // ✅ Lucide icons: set to your green
+        <Icon className={`${iconSize} text-[#b7ff62] mb-3`} />
       ) : null}
 
-      <h3 className={`text-white mb-2 ${textOffset} ${titleClassName}`}>
-        {title}
-      </h3>
+      <h3 className={`mb-2 ${textOffset} ${titleClassName}`}>{title}</h3>
 
-      <p
-        className={`text-gray-300 text-sm ${textOffset} ${descriptionClassName}`}
-      >
+      <p className={`text-sm ${textOffset} ${descriptionClassName}`}>
         {description}
       </p>
     </div>
