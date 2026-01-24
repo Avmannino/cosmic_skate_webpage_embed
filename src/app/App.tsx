@@ -215,26 +215,6 @@ export default function App() {
                   discounts and special rates!
                 </p>
               </div>
-
-              {/* Center buttons for all breakpoints <= ~1000px */}
-              {/*
-              <div className="flex flex-wrap gap-3 justify-center lg:justify-center min-[1001px]:max-[1325px]:ml-[28px]">
-                <a
-                  href="#schedule"
-                  onClick={scrollToId("schedule")}
-                  className={`bg-[#b2dbd7] px-6 py-3 rounded-md hover:bg-[#9ccbc7] hover:scale-105 transition-all inline-block ${SHADOW}`}
-                >
-                  View Schedule
-                </a>
-                <a
-                  href="#pricing"
-                  onClick={scrollToPricing}
-                  className={`bg-transparent px-6 py-3 rounded-md border border-red-700 hover:bg-gray-800 hover:scale-105 transition-all inline-block ${SHADOW}`}
-                >
-                  Birthdays
-                </a>
-              </div>
-              */}
             </div>
 
             {/* ✅ HeroCarousel wrapper shadow (image area) */}
@@ -262,7 +242,6 @@ export default function App() {
         <section className="max-w-[calc(80rem*0.97+200px)] mx-auto px-0 sm:px-6 xl:px-8 py-8 max-[1000px]:order-2 max-[1000px]:pt-0 max-[1000px]:-mt-[18px] lg:mt-[25px]">
           {/* Full-bleed ONLY on mobile to maximize width for the 2-column grid */}
           <div className="max-[640px]:w-[100vw] max-[640px]:ml-[calc(50%-50vw)] max-[640px]:px-3 max-[640px]:box-border">
-            {/* ✅ wrapper applies shadow to each InfoBox card without needing to edit InfoBox component */}
             <div className="grid w-full grid-cols-2 lg:grid-cols-4 gap-x-[20px] gap-y-[calc(1rem*1.0356)] justify-items-stretch">
               <div className={`w-full [&>*]:!w-full [&>*]:${SHADOW}`}>
                 <InfoBox
@@ -288,7 +267,6 @@ export default function App() {
                 />
               </div>
 
-              {/* ✅ UPDATED: force iconImage <img> to your green */}
               <div
                 className={`w-full [&>*]:!w-full [&>*]:${SHADOW} [&_img]:[filter:brightness(0)_saturate(100%)_invert(89%)_sepia(31%)_saturate(682%)_hue-rotate(25deg)_brightness(106%)_contrast(107%)]`}
               >
@@ -303,7 +281,6 @@ export default function App() {
                 />
               </div>
 
-              {/* ✅ UPDATED: force iconImage <img> to your green */}
               <div
                 className={`w-full [&>*]:!w-full [&>*]:${SHADOW} [&_img]:[filter:brightness(0)_saturate(100%)_invert(89%)_sepia(31%)_saturate(682%)_hue-rotate(25deg)_brightness(106%)_contrast(107%)]`}
               >
@@ -332,9 +309,7 @@ export default function App() {
               <div
                 className={[
                   "order-1 w-full",
-                  // <=1000: keep your existing offsets/flow
                   "max-[1000px]:-mt-[47px] max-[1000px]:mx-0",
-                  // >=1001: center + grow width, and move everything up ~30px
                   "min-[1001px]:mx-auto",
                   "min-[1001px]:w-[clamp(760px,72vw,1240px)]",
                   "min-[1001px]:-mt-[30px]",
@@ -345,7 +320,6 @@ export default function App() {
                 </h2>
                 <div className="mb-[20px] -mt-[12px] h-px w-full bg-gradient-to-r from-transparent via-[#b2dbd7]/50 to-transparent" />
 
-                {/* ✅ schedule wrapper shadow */}
                 <div
                   className={`bg-gray-800 rounded-lg border border-gray-700 p-4 sm:p-6 w-full min-w-0 overflow-visible ${SHADOW}`}
                 >
@@ -353,7 +327,6 @@ export default function App() {
                 </div>
               </div>
 
-              {/* Pricing Section - shows here on mobile, later on desktop */}
               <div className="order-2 lg:hidden mt-0">
                 <h2
                   id="pricing-mobile"
@@ -371,26 +344,17 @@ export default function App() {
                     ["--pc-feat" as any]: "clamp(12px, 1.7vw, 14px)",
                   }}
                 >
-                  {/* ✅ wrapper applies shadow + forces ALL text inside PriceCard to your color */}
                   <div className="grid grid-flow-col items-stretch justify-center gap-x-[var(--pc-gap)] auto-cols-[clamp(132px,56vw,200px)] max-[450px]:auto-cols-[clamp(108px,46vw,150px)] min-[601px]:max-[1000px]:auto-cols-[clamp(220px,35vw,340px)]">
                     <div
                       className={`h-full flex [&>*]:h-full [&>*]:w-full [&>*]:mx-0 [&>*]:${SHADOW} [&_*]:!text-[#b7ff62]`}
                     >
-                      <PriceCard
-                        title="Admission"
-                        price="$14"
-                        description="Per person"
-                      />
+                      <PriceCard title="Admission" price="$14" description="Per person" />
                     </div>
 
                     <div
                       className={`h-full flex [&>*]:h-full [&>*]:w-full [&>*]:mx-0 [&>*]:${SHADOW} [&_*]:!text-[#b7ff62]`}
                     >
-                      <PriceCard
-                        title="Skate Rental"
-                        price="$6"
-                        description="Per person"
-                      />
+                      <PriceCard title="Skate Rental" price="$6" description="Per person" />
                     </div>
                   </div>
                 </div>
@@ -409,7 +373,6 @@ export default function App() {
       >
         <h2 className="text-[2rem] sm:text-[2.15625rem] mb-1 text-center"></h2>
 
-        {/* ✅ wrapper applies shadow + forces ALL text inside PriceCard to your color */}
         <div className="grid grid-cols-1 sm:grid-cols-2 max-w-[856px] mx-auto gap-8 sm:gap-12 lg:gap-[72px]">
           <div className={`[&>*]:${SHADOW} [&_*]:!text-[#b7ff62]`}>
             <PriceCard
@@ -425,11 +388,7 @@ export default function App() {
               title="Admission | 12yrs & Under"
               price="$15"
               description="Per person"
-              features={[
-                "Hockey & Figure Skates",
-                "Youth & Adult Sizes",
-                "Exchange sizes anytime",
-              ]}
+              features={["Hockey & Figure Skates", "Youth & Adult Sizes", "Exchange sizes anytime"]}
             />
           </div>
         </div>
@@ -443,45 +402,32 @@ export default function App() {
           </h2>
           <div className="my-5 h-px w-full bg-gradient-to-r from-transparent via-[#b2dbd7]/50 to-transparent" />
 
-          {/* ✅ UPDATED: wider container ONLY on desktop (lg+) so the two cards get wider */}
           <div className="grid grid-cols-1 sm:grid-cols-2 w-[90%] sm:w-full max-w-4xl lg:max-w-6xl xl:max-w-[72rem] mx-auto my-8 gap-8 sm:gap-12 lg:gap-[72px]">
-            {/* ✅ card shadow */}
-            <div
-              className={`bg-gray-800 rounded-lg border border-gray-700 p-[1.65375rem] text-center ${SHADOW}`}
-            >
+            <div className={`bg-gray-800 rounded-lg border border-gray-700 p-[1.65375rem] text-center ${SHADOW}`}>
               <h3 className="text-[1.378125rem] sm:text-[1.65375rem] mb-4 -mt-[5px]">
                 Birthday Parties
               </h3>
-
-              {/* ✅ button shadow */}
               <a
                 href="https://www.wingsarena.com/events"
                 className={`bg-[#3874c5] px-[3.85375rem] py-[1.126875rem] rounded-md hover:bg-[#8028b0] hover:scale-105 transition-all inline-block mb-4 font-bold ${SHADOW}`}
               >
                 Learn More
               </a>
-
               <p className="text-[0.9646875rem] mt-1 font-bold leading-7">
                 For birthday party inquiries email: jwanderlingh@wingsarena.com
               </p>
             </div>
 
-            {/* ✅ card shadow */}
-            <div
-              className={`bg-gray-800 rounded-lg border border-gray-700 p-[1.65375rem] text-center ${SHADOW}`}
-            >
+            <div className={`bg-gray-800 rounded-lg border border-gray-700 p-[1.65375rem] text-center ${SHADOW}`}>
               <h3 className="text-[1.378125rem] sm:text-[1.65375rem] mb-4 -mt-[5px]">
                 Private Ice Bookings
               </h3>
-
-              {/* ✅ button shadow */}
               <a
                 href="https://www.catchcorner.com/facility-page/embedded/rental/wings-arena"
                 target="_blank"
                 rel="noopener noreferrer"
                 className={`bg-[#8028b0] px-[2.35375rem] py-[0.526875rem] rounded-md hover:bg-[#9ccbc7] hover:scale-105 transition-all inline-block mt-[2px] ${SHADOW}`}
               >
-                {/* ✅ image shadow */}
                 <img
                   src={catchCornerLogo}
                   alt="Book with CatchCorner"
@@ -497,29 +443,25 @@ export default function App() {
       </section>
 
       {/* Gallery Section */}
-      {/* ✅ Guaranteed move up 20px: use translate instead of relying on margins */}
-      <section className="max-w-6xl mx-auto px-4 sm:px-6 xl:px-8 py-18 -mt-[60px] sm:mt-0 order-2 sm:order-none -translate-y-[20px]">
-        <h2 className="text-2xl sm:text-4xl mb-6 sm:mb-6 text-center">
-          Gallery
-        </h2>
+      {/* ✅ FIX: only translate above 750px (translate creates “ghost space” on small screens) */}
+      <section className="max-w-6xl mx-auto px-4 sm:px-6 xl:px-8 py-18 -mt-[60px] sm:mt-0 order-2 sm:order-none min-[751px]:-translate-y-[20px] max-[750px]:translate-y-0">
+        <h2 className="text-2xl sm:text-4xl mb-6 sm:mb-6 text-center">Gallery</h2>
         <div className="my-4 h-px w-full bg-gradient-to-r from-transparent via-[#b2dbd7]/50 to-transparent" />
 
-        {/* ✅ gallery image area shadow */}
         <div className={`rounded-lg overflow-hidden`}>
           <ImageCarousel images={galleryImages} interval={3000} />
         </div>
       </section>
 
       {/* FAQ Section */}
-      {/* ✅ Guaranteed move up 50px: use translate instead of relying on margins */}
-      <section className="bg-[#392a7f] py-12 sm:py-12 pt-0 sm:pt-12 order-1 sm:order-none mt-[35px] sm:mt-0 -translate-y-[15px]">
+      {/* ✅ Same fix here to prevent additional phantom spacing at small widths */}
+      <section className="bg-[#392a7f] py-12 sm:py-12 pt-0 sm:pt-12 order-1 sm:order-none mt-[35px] sm:mt-0 min-[751px]:-translate-y-[15px] max-[750px]:translate-y-0">
         <div className="max-w-[58.08rem] mx-auto px-4 sm:px-6 xl:px-8">
           <h2 className="text-2xl sm:text-3xl mb-4 sm:mb-6 text-center">
             Frequently Asked Questions
           </h2>
           <div className="my-4 h-px w-full bg-gradient-to-r from-transparent via-[#b2dbd7]/50 to-transparent" />
 
-          {/* ✅ accordion (card) shadow */}
           <Accordion
             type="single"
             collapsible
