@@ -411,7 +411,7 @@ export default function App() {
               {/* ✅ button shadow */}
               <a
                 href="https://www.wingsarena.com/events"
-                className={`bg-[#2c3f5d] text-gray-200 px-[3.85375rem] py-[1.126875rem] rounded-md hover:bg-[#9ccbc7] hover:scale-105 transition-all inline-block mb-4 font-bold ${SHADOW}`}
+                className={`bg-[#3874c5] text-gray-200 px-[3.85375rem] py-[1.126875rem] rounded-md hover:bg-[#8028b0] hover:scale-105 transition-all inline-block mb-4 font-bold ${SHADOW}`}
               >
                 Learn More
               </a>
@@ -434,7 +434,7 @@ export default function App() {
                 href="https://www.catchcorner.com/facility-page/embedded/rental/wings-arena"
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`bg-[#b2dbd7] text-gray-900 px-[2.35375rem] py-[0.526875rem] rounded-md hover:bg-[#9ccbc7] hover:scale-105 transition-all inline-block mt-[2px] ${SHADOW}`}
+                className={`bg-[#8028b0] text-gray-900 px-[2.35375rem] py-[0.526875rem] rounded-md hover:bg-[#9ccbc7] hover:scale-105 transition-all inline-block mt-[2px] ${SHADOW}`}
               >
                 {/* ✅ image shadow */}
                 <img
