@@ -245,7 +245,7 @@ export default function App() {
                   titleClassName="text-[16px] sm:text-[16px] text-[#b7ff62]"
                   descriptionClassName="text-[11px] sm:text-[13px] leading-tight text-[#b7ff62]"
                   iconOffset="-mt-[0px]"
-                  textOffset="-mt-[3.5px]"
+                  textOffset="mt-0.5"
                 />
               </div>
 
