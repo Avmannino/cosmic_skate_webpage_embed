@@ -418,7 +418,7 @@ export default function App() {
               </h3>
 
               <a
-                href="https://www.wingsarena.com/events"
+                href="https://www.wingsarena.com/party-inquiries"
                 className={`bg-[#3874c5] px-[3.85375rem] py-[1.126875rem] rounded-md hover:bg-[#8028b0] hover:scale-105 transition-all inline-block mb-4 font-bold ${SHADOW}`}
               >
                 Learn More
