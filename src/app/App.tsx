@@ -339,14 +339,15 @@ export default function App() {
                     ["--pc-feat" as any]: "clamp(12px, 1.7vw, 14px)",
                   }}
                 >
-                  <div className="grid grid-flow-col items-stretch justify-center gap-x-[var(--pc-gap)] auto-cols-[clamp(132px,56vw,200px)] max-[450px]:auto-cols-[clamp(108px,46vw,150px)] min-[601px]:max-[1000px]:auto-cols-[clamp(220px,35vw,340px)]">
+                  <div className="grid grid-flow-col items-stretch justify-center gap-x-[var(--pc-gap)] auto-cols-[clamp(140px,44vw,220px)] max-[450px]:auto-cols-[clamp(130px,43vw,165px)] min-[601px]:max-[1000px]:auto-cols-[clamp(220px,35vw,340px)]">
                     <div
                       className={`h-full flex [&>*]:h-full [&>*]:w-full [&>*]:mx-0 [&>*]:${SHADOW} [&_*]:!text-[#b7ff62]`}
                     >
                       <PriceCard
-                        title="Admission"
-                        price="$14"
+                        title="13 & Older"
+                        price="$20"
                         description="Per person"
+                        priceNote="Rental Skates Included!"
                       />
                     </div>
 
@@ -354,9 +355,10 @@ export default function App() {
                       className={`h-full flex [&>*]:h-full [&>*]:w-full [&>*]:mx-0 [&>*]:${SHADOW} [&_*]:!text-[#b7ff62]`}
                     >
                       <PriceCard
-                        title="Skate Rental"
-                        price="$6"
+                        title="12 & Under"
+                        price="$15"
                         description="Per person"
+                        priceNote="Rental Skates Included!"
                       />
                     </div>
                   </div>
@@ -382,7 +384,7 @@ export default function App() {
               title="Admission | 13yrs & Older"
               price="$20"
               description="Per person"
-              features={["Walk-ins welcome", "Rental Skates Included!"]}
+              priceNote="Rental Skates Included!"
             />
           </div>
 
@@ -391,11 +393,7 @@ export default function App() {
               title="Admission | 12yrs & Under"
               price="$15"
               description="Per person"
-              features={[
-                "Hockey & Figure Skates",
-                "Youth & Adult Sizes",
-                "Exchange sizes anytime",
-              ]}
+              priceNote="Rental Skates Included!"
             />
           </div>
         </div>

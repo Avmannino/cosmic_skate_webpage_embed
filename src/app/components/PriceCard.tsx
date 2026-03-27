@@ -2,6 +2,7 @@ type PriceCardProps = {
   title: string;
   price: string;
   description?: string;
+  priceNote?: string;
   features?: string[];
   className?: string;
 };
@@ -10,6 +11,7 @@ export function PriceCard({
   title,
   price,
   description,
+  priceNote,
   features = [],
   className = "",
 }: PriceCardProps) {
@@ -44,29 +46,33 @@ export function PriceCard({
           </h3>
 
           <div className="mt-3">
-            <div className="text-white text-4xl sm:text-4xl font-bold leading-none">
-              {price}
+            <div className="flex items-baseline gap-x-2 flex-wrap max-[600px]:justify-center min-[601px]:max-[1000px]:justify-center">
+              <span className="text-white text-4xl sm:text-4xl font-bold leading-none">
+                {price}
+              </span>
+              {description ? (
+                <span className="text-gray-300 text-sm">{description}</span>
+              ) : null}
             </div>
-            {description ? (
-              <div className="text-gray-300 text-sm mt-2">{description}</div>
+            {priceNote ? (
+              <div className="text-gray-300 text-sm mt-4">{priceNote}</div>
             ) : null}
           </div>
         </div>
 
         {features.length > 0 ? (
-          <ul
+          <div
             className={[
-              "mt-6 space-y-3 text-gray-200 text-sm list-disc list-inside",
+              "mt-6 space-y-3 text-gray-200 text-sm",
               "min-[601px]:max-[1000px]:text-center",
-              "min-[601px]:max-[1000px]:list-inside",
             ].join(" ")}
           >
             {features.map((feature, idx) => (
-              <li key={idx} className="leading-relaxed">
+              <div key={idx} className="leading-relaxed">
                 {feature}
-              </li>
+              </div>
             ))}
-          </ul>
+          </div>
         ) : null}
 
         <div className="mt-auto" />
