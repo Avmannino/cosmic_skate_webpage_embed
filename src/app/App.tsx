@@ -24,8 +24,16 @@ import {
   AccordionTrigger,
 } from "@/app/components/ui/accordion";
 import { Volume2, Stars, Star } from "lucide-react";
+import { initWixAutoHeight } from "../wixAutoHeight";
 
 export default function App() {
+  useEffect(() => {
+    const cleanup =
+      initWixAutoHeight();
+
+    return cleanup;
+  }, []);
+
   const heroImages = [
     { url: heroImage3, alt: "Wings Arena seating area" },
     { url: heroImage1, alt: "Wings Arena ice rink facility" },
@@ -142,7 +150,7 @@ export default function App() {
   return (
     <div
       className={[
-        "min-h-screen bg-[#392a7f] flex flex-col sm:block",
+        "w-full min-w-0 min-h-0 h-auto bg-[#392a7f] flex flex-col sm:block",
         "text-[#b7ff62] [&_*]:text-[#b7ff62]",
         "spotlight-stage",
         showSpotlights ? "spotlight-entrance" : "",
@@ -192,6 +200,7 @@ export default function App() {
                   night out that feels unique each time you skate. Bring your
                   crew and make it your new go-to weekend night out!
                 </p>
+
                 <p>
                   Rental Skates are INCLUDED during Cosmic Skates. We have a
                   wide variety of sizes available for all ages in both hockey
@@ -312,6 +321,7 @@ export default function App() {
                 <h2 className="text-[1.50125rem] sm:text-4xl mb-7 mt-7 min-[1001px]:mb-11 text-center">
                   Upcoming Cosmic Skates
                 </h2>
+
                 <div className="mb-[20px] -mt-[12px] h-px w-full bg-gradient-to-r from-transparent via-[#b2dbd7]/50 to-transparent" />
 
                 <div
@@ -405,6 +415,7 @@ export default function App() {
           <h2 className="text-[1.5625rem] sm:text-[2.2625rem] mb-0 sm:mb-5 text-center">
             Parties & Ice Bookings
           </h2>
+
           <div className="my-5 h-px w-full bg-gradient-to-r from-transparent via-[#b2dbd7]/50 to-transparent" />
 
           <div className="grid grid-cols-1 sm:grid-cols-2 w-[90%] sm:w-full max-w-4xl lg:max-w-6xl xl:max-w-[72rem] mx-auto my-8 gap-8 sm:gap-12 lg:gap-[72px]">
@@ -446,6 +457,7 @@ export default function App() {
                   className={`h-[2.075rem] sm:h-[2.81rem] rounded-md`}
                 />
               </a>
+
               <p className="text-[0.9646875rem] mt-4 font-bold">
                 Ice time, on your watch. Book your next skate now!
               </p>
@@ -466,6 +478,7 @@ export default function App() {
         <h2 className="text-2xl sm:text-4xl mb-6 sm:mb-6 text-center">
           Gallery
         </h2>
+
         <div className="my-4 h-px w-full bg-gradient-to-r from-transparent via-[#b2dbd7]/50 to-transparent" />
 
         {/* ✅ iOS scroll fix: allow vertical pan even when touching the carousel */}
@@ -480,6 +493,7 @@ export default function App() {
           <h2 className="text-2xl sm:text-3xl mb-4 sm:mb-6 text-center">
             Frequently Asked Questions
           </h2>
+
           <div className="my-4 h-px w-full bg-gradient-to-r from-transparent via-[#b2dbd7]/50 to-transparent" />
 
           <Accordion
@@ -488,7 +502,10 @@ export default function App() {
             className={`bg-[#b4fd5a] rounded-lg border border-gray-700 px-4 sm:px-6 ${SHADOW} [&_*]:!text-[#1e2a3a]`}
           >
             <AccordionItem value="item-1">
-              <AccordionTrigger>Do I need to bring my own skates?</AccordionTrigger>
+              <AccordionTrigger>
+                Do I need to bring my own skates?
+              </AccordionTrigger>
+
               <AccordionContent>
                 No, skate rentals are available and are included with admission
                 during Cosmic Skates. We have sizes for all ages, from toddlers
@@ -496,8 +513,12 @@ export default function App() {
                 you prefer.
               </AccordionContent>
             </AccordionItem>
+
             <AccordionItem value="item-2">
-              <AccordionTrigger>What should I wear to Cosmic Skate?</AccordionTrigger>
+              <AccordionTrigger>
+                What should I wear to Cosmic Skate?
+              </AccordionTrigger>
+
               <AccordionContent>
                 We recommend wearing comfortable, warm clothing that allows for
                 movement. Long pants are recommended, and layers are ideal as
@@ -506,8 +527,12 @@ export default function App() {
                 recommended for all skaters regardless of ability.
               </AccordionContent>
             </AccordionItem>
+
             <AccordionItem value="item-3">
-              <AccordionTrigger>Are skating aids available for beginners?</AccordionTrigger>
+              <AccordionTrigger>
+                Are skating aids available for beginners?
+              </AccordionTrigger>
+
               <AccordionContent>
                 Yes, we have skating aids available to help beginners learn to
                 skate (limited quantity). These are especially helpful for young
@@ -515,8 +540,12 @@ export default function App() {
                 available to provide basic guidance.
               </AccordionContent>
             </AccordionItem>
+
             <AccordionItem value="item-4">
-              <AccordionTrigger>Can I book a birthday party or group event?</AccordionTrigger>
+              <AccordionTrigger>
+                Can I book a birthday party or group event?
+              </AccordionTrigger>
+
               <AccordionContent>
                 Absolutely! We host birthday parties and group event bookings.
                 This includes your choice of private or public skating time
